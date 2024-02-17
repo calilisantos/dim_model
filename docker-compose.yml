@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  python_env:
+    build:
+      context: .
+      dockerfile: Dockerfile.Python
+    volumes:
+      - ./dim_model:/app/dim_model  # Atualiza o volume para incluir a pasta dim_model
+      - ./tests:/app/tests  # Atualiza o volume para incluir a pasta tests
+      - ./tox.ini:/app/tox.ini  # Atualiza o volume para incluir o arquivo tox.ini
+    env_file:
+      - .env
+    depends_on:
+      - mysql_db
+    container_name: python_env
+    command: |
+      bash -c "
+      echo ::::::::::::::::::::RUNNING flake8:::::::::::::::::::: &&
+      flake8 &&
+      echo ::::::::::::::::::::RUNNING TESTS:::::::::::::::::::: &&
+      python -m pytest -v &&
+      echo ::::::::::::::::::::CONNECTING WITH MYSQL:::::::::::::::::::: &&
+      # timeout 20s bash -c 'until echo > /dev/tcp/mysql_db/3306; do sleep 1; done' &&
+      for (( i=0; i<20; i++ )); do
+      (echo >/dev/tcp/mysql_db/3306) &>/dev/null && break;
+      echo -n .
+      sleep 1
+      done &&
+      echo 'Server up!' ||
+      { echo 'Failed to connect to MySQL server'; exit 1; } &&
+      echo ::::::::::::::::::::RUNNING main.py:::::::::::::::::::: &&
+      python dim_model/main.py &&
+      echo ::::::::::::::::::::RUNNING CONTAINER:::::::::::::::::::: &&
+      tail -f /dev/null
+      "
+
+  mysql_db:
+    build:
+      context: .
+      dockerfile: Dockerfile.MySQL
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_HOST: ${DB_HOST}
+    ports:
+      - "3306:3306"
+    container_name: mysql_db
