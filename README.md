@@ -152,7 +152,7 @@ Nesse cenário, é necessário que sua máquina possua instalado: i. um servidor
 Caso não possua ou opte por não usar um servidor mysql, execute o seguinte comando:
 ```bash
 # na raiz do projeto, dê permissão para execução do script mysql_local.sh:
-chmod 777 ./mysql_local.sh
+chmod +x ./mysql_local.sh
 # execute o arquivo:
 ./mysql_local.sh
 ```
@@ -343,7 +343,7 @@ JOIN dest_dim AS D
 ON C.destination_id = D.destination_id
 WHERE
     DESTINATION_TYPE = "CAIXA"
-    AND is_in_cash = TRUE
+    AND is_in_cash = TRUE;
 ```
   
 # <a id='next'>[Próximos passos](#topicos)</a>
