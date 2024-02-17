@@ -8,8 +8,6 @@ WORKDIR /app
 ENV PYTHONPATH=/app
 
 # Copia os arquivos necessários para o diretório de trabalho
-COPY entrypoint.sh /app
-COPY wait-for-it.sh /app
 COPY requirements.txt /app
 COPY tox.ini /app
 COPY dim_model /app/dim_model

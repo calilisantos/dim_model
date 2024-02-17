@@ -144,6 +144,8 @@ Nesse cenário, é necessário que sua máquina possua instalado: i. um servidor
 
 ### <strong><a id='com-docker'>[2. Execução com o docker:](#topicos)</a></strong>
 
+>**IMPORTANTE**<br/>Tire a hashtag do arquivo .env para êxito desses passos.
+
 >**IMPORTANTE**<br/>Nesse cenário recomenda-se utilizar as versões a seguir das ferramentas docker:<br/>`docker:25.0.3`  `docker-compose:1.29.2` <br/>**Verifique suas versões com os comandos:** <br/>`docker version` e `docker-compose -v`
 
 ### 2.1. Usando imagem docker do MySQL (para Linux ou Mac):
