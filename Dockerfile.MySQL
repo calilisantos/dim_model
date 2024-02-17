@@ -1,0 +1,14 @@
+# Dockerfile para o banco MySQL
+FROM mysql:5.7
+
+# Copia o arquivo .env para o diretório /etc/env do container
+COPY .env /etc/env
+
+# Define variáveis de ambiente com base no arquivo .env
+ENV MYSQL_DATABASE=${DB_NAME} \
+    MYSQL_PASSWORD=${DB_PASSWORD} \
+    MYSQL_ROOT_PASSWORD=${DB_PASSWORD} \
+    MYSQL_HOST=${DB_HOST}
+
+# Expor a porta do MySQL
+EXPOSE 3306
