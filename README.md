@@ -250,7 +250,7 @@ A construção das tabelas através do SQLAlchemy, seguiu o seguinte *DER*:
 
   ---
 
-## Formato das entidades (Modelagem dos dados?)
+## Formato das entidades
 O de-para dos dados originais para esses é descrito abaixo
 ### Tabela bank_dim:
 |Coluna|Tipo|Descrição|Origem|
