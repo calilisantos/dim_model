@@ -1,0 +1,19 @@
+# Dockerfile para o código Python
+FROM python:3.10
+
+# Define a raiz do projeto como o diretório de trabalho
+WORKDIR /app
+
+# Define a variável de ambiente PYTHONPATH
+ENV PYTHONPATH=/app
+
+# Copia os arquivos necessários para o diretório de trabalho
+COPY entrypoint.sh /app
+COPY wait-for-it.sh /app
+COPY requirements.txt /app
+COPY tox.ini /app
+COPY dim_model /app/dim_model
+COPY tests /app/tests
+
+# Instala as dependências do projeto
+RUN pip install --no-cache-dir -r requirements.txt
