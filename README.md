@@ -152,7 +152,7 @@ Nesse cenário, é necessário que sua máquina possua instalado: i. um servidor
 Caso não possua ou opte por não usar um servidor mysql, execute o seguinte comando:
 ```bash
 # na raiz do projeto, dê permissão para execução do script mysql_local.sh:
-chmod 777 ./mysql_local.sh
+chmod +x ./mysql_local.sh
 # execute o arquivo:
 ./mysql_local.sh
 ```
