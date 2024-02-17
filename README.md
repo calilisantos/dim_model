@@ -343,7 +343,7 @@ JOIN dest_dim AS D
 ON C.destination_id = D.destination_id
 WHERE
     DESTINATION_TYPE = "CAIXA"
-    AND is_in_cash = TRUE
+    AND is_in_cash = TRUE;
 ```
   
 # <a id='next'>[Próximos passos](#topicos)</a>
