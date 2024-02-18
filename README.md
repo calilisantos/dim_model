@@ -228,15 +228,9 @@ flake8 dim_model/model.py
 
 <strong><a id='testes'>[Testes](#topicos)</a></strong>
 
-Serão utilizadas as bibliotecas _xUnit_ e _FluentAssertions_ para desenvolvimento dos testes da aplicação. 
-
-  A cobertura mínima do código definida foi de 30%, melhor descrita na seção de implementações.
-
-  **_Para executar os testes localmente, digite no terminal o comando `dotnet test`._**
-
 Foi utilizado o **[pytest](https://docs.pytest.org/en/8.0.x/)** e **[unittest](https://docs.python.org/3/library/unittest.html)** para construção dos testes (por enquanto somente unitários) da aplicação.
 
-Mais detalhes na documentação desses testes.
+Mais detalhes na documentação dessas bibliotecas.
 
 <strong><a id='der'>[Diagrama ER e Modelagem dos dados](#topicos)</a></strong>
 
