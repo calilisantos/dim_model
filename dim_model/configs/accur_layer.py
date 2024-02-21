@@ -15,6 +15,7 @@ COD_DICT: dict = {
     'P': 'PAGAMENTO',
     'T': 'CAIXA'
 }
+DEFAULT_COD_VALUE: str = 'CAIXA'
 COLUMNS_TO_DROP: list = [
     'BANCO',
     'CLIENTE'
