@@ -37,8 +37,10 @@ class Transform:
     def _transform_cod_column(self):
         self._accur_data['COD'] = (
             self._accur_data['COD']
-            .str.strip()
-                .replace(accur_config.COD_DICT)
+            .str.upper()
+                .str.strip()
+                    .replace(accur_config.COD_DICT)
+                        .fillna(accur_config.DEFAULT_COD_VALUE)
         )
 
     def _transform_value_column(self):
