@@ -24,6 +24,7 @@ class Model:
     def _create_is_client_column(self):
         self._model_data['is_client'] = np.where(
             self._model_data['OBSERVAÇÃO'].isnull() |
+            ~self._model_data['CLIENTE'].isin(self._model_data['OBSERVAÇÃO']) |
             self._model_data['CLIENTE'].isin(self._model_data['OBSERVAÇÃO']),
             True,
             False
@@ -35,16 +36,13 @@ class Model:
         )
 
     def _create_client_name_column(self):
-        self._model_data['client_name'] = np.where(
-            self._model_data['is_client'] is True,
-            self._model_data['name'],
-            np.where(
-                self._model_data['OBSERVAÇÃO'].isin(self._model_data['name']) &
-                self._model_data['is_client'] is False,
-                self._model_data['OBSERVAÇÃO'],
-                ''
-            )
-        )
+        self._model_data.loc[self._model_data['is_client'], 'client_name'] = self._model_data['name']
+
+        self._model_data.loc[
+            (~self._model_data['is_client']) &
+            self._model_data['OBSERVAÇÃO'].isin(self._model_data['name']),
+            'client_name'
+        ] = self._model_data['OBSERVAÇÃO']
 
     def _rename_bank_dim_columns(self):
         self._model_data = self._model_data.rename(
