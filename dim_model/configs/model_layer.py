@@ -31,7 +31,8 @@ CHECK_ID_LABELS: list = [
     'bank_name',
     'check_amount',
     'check_number',
-    'name'
+    'name',
+    'maturity_date'
 ]
 
 DEST_DIM_COLUMNS: list = [
